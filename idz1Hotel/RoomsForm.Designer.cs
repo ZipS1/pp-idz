@@ -35,6 +35,7 @@
             this.removeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EditMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonAddRoom = new System.Windows.Forms.Button();
+            this.showBookingsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.roomsGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
             this.SuspendLayout();
@@ -68,10 +69,11 @@
             // 
             this.contextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showBookingsMenuItem,
             this.removeMenuItem,
             this.EditMenuItem});
             this.contextMenu.Name = "contextMenu";
-            this.contextMenu.Size = new System.Drawing.Size(211, 80);
+            this.contextMenu.Size = new System.Drawing.Size(211, 104);
             // 
             // removeMenuItem
             // 
@@ -96,6 +98,13 @@
             this.buttonAddRoom.Text = "Добавить";
             this.buttonAddRoom.UseVisualStyleBackColor = true;
             this.buttonAddRoom.Click += new System.EventHandler(this.buttonAddRoom_Click);
+            // 
+            // showBookingsMenuItem
+            // 
+            this.showBookingsMenuItem.Name = "showBookingsMenuItem";
+            this.showBookingsMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.showBookingsMenuItem.Text = "Просмотр";
+            this.showBookingsMenuItem.Click += new System.EventHandler(this.showBookingsMenuItem_Click);
             // 
             // RoomsForm
             // 
@@ -122,5 +131,6 @@
         private System.Windows.Forms.ToolStripMenuItem removeMenuItem;
         private System.Windows.Forms.ToolStripMenuItem EditMenuItem;
         private System.Windows.Forms.Button buttonAddRoom;
+        private System.Windows.Forms.ToolStripMenuItem showBookingsMenuItem;
     }
 }
