@@ -50,6 +50,7 @@ namespace idz1Hotel
         private void RoomsForm_Load(object sender, EventArgs e)
         {
             LoadData();
+            roomsGrid.ClearSelection();
         }
 
         private void buttonShowClients_Click(object sender, EventArgs e)
@@ -59,22 +60,11 @@ namespace idz1Hotel
             form.Show();
         }
 
-        private void ShowBookingsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void roomsGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            RoomBookingsForm form = new RoomBookingsForm(Convert.ToInt32(roomsGrid.SelectedRows[0].Cells["Id"].Value));
+            RoomBookingsForm form = new RoomBookingsForm(Convert.ToInt32(roomsGrid.Rows[e.RowIndex].Cells["Id"].Value));
             form.Owner = this;
             form.Show();
-        }
-
-        private void roomsGrid_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
-        {
-                if (e.Button == MouseButtons.Right)
-                {
-                    roomsGrid.ClearSelection();
-                    roomsGrid.Rows[e.RowIndex].Selected = true;
-                    contextMenuRoom.Show(Cursor.Position.X, Cursor.Position.Y);
-                    roomsGrid.Focus();
-                }
         }
     }
 }

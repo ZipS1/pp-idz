@@ -28,13 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.roomsGrid = new System.Windows.Forms.DataGridView();
             this.buttonShowClients = new System.Windows.Forms.Button();
-            this.ShowBookingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuRoom = new System.Windows.Forms.ContextMenuStrip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.roomsGrid)).BeginInit();
-            this.contextMenuRoom.SuspendLayout();
             this.SuspendLayout();
             // 
             // roomsGrid
@@ -50,7 +46,7 @@
             this.roomsGrid.RowTemplate.Height = 24;
             this.roomsGrid.Size = new System.Drawing.Size(776, 287);
             this.roomsGrid.TabIndex = 0;
-            this.roomsGrid.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.roomsGrid_CellMouseDown);
+            this.roomsGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.roomsGrid_CellDoubleClick);
             // 
             // buttonShowClients
             // 
@@ -61,21 +57,6 @@
             this.buttonShowClients.Text = "Список клиентов";
             this.buttonShowClients.UseVisualStyleBackColor = true;
             this.buttonShowClients.Click += new System.EventHandler(this.buttonShowClients_Click);
-            // 
-            // ShowBookingsToolStripMenuItem
-            // 
-            this.ShowBookingsToolStripMenuItem.Name = "ShowBookingsToolStripMenuItem";
-            this.ShowBookingsToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
-            this.ShowBookingsToolStripMenuItem.Text = "Просмотр броней";
-            this.ShowBookingsToolStripMenuItem.Click += new System.EventHandler(this.ShowBookingsToolStripMenuItem_Click);
-            // 
-            // contextMenuRoom
-            // 
-            this.contextMenuRoom.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuRoom.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ShowBookingsToolStripMenuItem});
-            this.contextMenuRoom.Name = "contextMenuRoom";
-            this.contextMenuRoom.Size = new System.Drawing.Size(211, 56);
             // 
             // RoomsForm
             // 
@@ -88,7 +69,6 @@
             this.Text = "Комнаты";
             this.Load += new System.EventHandler(this.RoomsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.roomsGrid)).EndInit();
-            this.contextMenuRoom.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -97,7 +77,5 @@
 
         private System.Windows.Forms.DataGridView roomsGrid;
         private System.Windows.Forms.Button buttonShowClients;
-        private System.Windows.Forms.ToolStripMenuItem ShowBookingsToolStripMenuItem;
-        private System.Windows.Forms.ContextMenuStrip contextMenuRoom;
     }
 }
