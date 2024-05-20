@@ -20,6 +20,18 @@ namespace idz1Hotel
             InitializeComponent();
         }
 
+        public int GetRecommendedPrice(int roomId)
+        {
+            foreach (DataGridViewRow row in roomsGrid.Rows)
+            {
+                if (Convert.ToInt32(row.Cells["Id"].Value) == roomId)
+                {
+                    return Convert.ToInt32(row.Cells["DayPrice"].Value);
+                }
+            }
+            return 0;
+        }
+
         private void LoadData()
         {
             using (DataContext db = new DataContext(conn))

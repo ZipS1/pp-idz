@@ -47,7 +47,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(13, 41);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(33, 16);
             this.label1.TabIndex = 0;
@@ -56,7 +56,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 40);
+            this.label2.Location = new System.Drawing.Point(13, 13);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 16);
             this.label2.TabIndex = 1;
@@ -100,17 +100,17 @@
             // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(230, 13);
+            this.textBoxName.Location = new System.Drawing.Point(230, 41);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(152, 22);
-            this.textBoxName.TabIndex = 6;
+            this.textBoxName.TabIndex = 7;
             // 
             // textBoxLastname
             // 
-            this.textBoxLastname.Location = new System.Drawing.Point(230, 40);
+            this.textBoxLastname.Location = new System.Drawing.Point(230, 13);
             this.textBoxLastname.Name = "textBoxLastname";
             this.textBoxLastname.Size = new System.Drawing.Size(152, 22);
-            this.textBoxLastname.TabIndex = 7;
+            this.textBoxLastname.TabIndex = 6;
             // 
             // textBoxPatronymic
             // 

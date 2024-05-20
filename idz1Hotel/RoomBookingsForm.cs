@@ -23,7 +23,7 @@ namespace idz1Hotel
             this.Text = $"Бронирования комнаты #{roomId}";
         }
 
-        private void LoadData()
+        public void LoadData()
         {
             using (DataContext db = new DataContext(conn))
             {
@@ -76,7 +76,9 @@ namespace idz1Hotel
 
         private void buttonAddBooking_Click(object sender, EventArgs e)
         {
-            // TODO
+            AddBookingForm form = new AddBookingForm(roomId);
+            form.Owner = this;
+            form.Show();
         }
     }
 }

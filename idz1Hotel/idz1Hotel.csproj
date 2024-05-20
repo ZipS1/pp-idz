@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddBookingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddBookingForm.Designer.cs">
+      <DependentUpon>AddBookingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddClientForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +88,9 @@
     <Compile Include="RoomsForm.Designer.cs">
       <DependentUpon>RoomsForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddBookingForm.resx">
+      <DependentUpon>AddBookingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddClientForm.resx">
       <DependentUpon>AddClientForm.cs</DependentUpon>
     </EmbeddedResource>
