@@ -28,9 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.roomsGrid = new System.Windows.Forms.DataGridView();
             this.buttonShowClients = new System.Windows.Forms.Button();
+            this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.removeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonAddRoom = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.roomsGrid)).BeginInit();
+            this.contextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // roomsGrid
@@ -46,11 +52,11 @@
             this.roomsGrid.RowTemplate.Height = 24;
             this.roomsGrid.Size = new System.Drawing.Size(776, 287);
             this.roomsGrid.TabIndex = 0;
-            this.roomsGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.roomsGrid_CellDoubleClick);
+            this.roomsGrid.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.roomsGrid_CellMouseDown);
             // 
             // buttonShowClients
             // 
-            this.buttonShowClients.Location = new System.Drawing.Point(13, 306);
+            this.buttonShowClients.Location = new System.Drawing.Point(12, 348);
             this.buttonShowClients.Name = "buttonShowClients";
             this.buttonShowClients.Size = new System.Drawing.Size(160, 37);
             this.buttonShowClients.TabIndex = 1;
@@ -58,17 +64,52 @@
             this.buttonShowClients.UseVisualStyleBackColor = true;
             this.buttonShowClients.Click += new System.EventHandler(this.buttonShowClients_Click);
             // 
+            // contextMenu
+            // 
+            this.contextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.removeMenuItem,
+            this.EditMenuItem});
+            this.contextMenu.Name = "contextMenu";
+            this.contextMenu.Size = new System.Drawing.Size(211, 80);
+            // 
+            // removeMenuItem
+            // 
+            this.removeMenuItem.Name = "removeMenuItem";
+            this.removeMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.removeMenuItem.Text = "Удалить";
+            this.removeMenuItem.Click += new System.EventHandler(this.removeMenuItem_Click);
+            // 
+            // EditMenuItem
+            // 
+            this.EditMenuItem.Name = "EditMenuItem";
+            this.EditMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.EditMenuItem.Text = "Изменить";
+            this.EditMenuItem.Click += new System.EventHandler(this.EditMenuItem_Click);
+            // 
+            // buttonAddRoom
+            // 
+            this.buttonAddRoom.Location = new System.Drawing.Point(12, 305);
+            this.buttonAddRoom.Name = "buttonAddRoom";
+            this.buttonAddRoom.Size = new System.Drawing.Size(160, 37);
+            this.buttonAddRoom.TabIndex = 3;
+            this.buttonAddRoom.Text = "Добавить";
+            this.buttonAddRoom.UseVisualStyleBackColor = true;
+            this.buttonAddRoom.Click += new System.EventHandler(this.buttonAddRoom_Click);
+            // 
             // RoomsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonAddRoom);
             this.Controls.Add(this.buttonShowClients);
             this.Controls.Add(this.roomsGrid);
             this.Name = "RoomsForm";
             this.Text = "Комнаты";
             this.Load += new System.EventHandler(this.RoomsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.roomsGrid)).EndInit();
+            this.contextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -77,5 +118,9 @@
 
         private System.Windows.Forms.DataGridView roomsGrid;
         private System.Windows.Forms.Button buttonShowClients;
+        private System.Windows.Forms.ContextMenuStrip contextMenu;
+        private System.Windows.Forms.ToolStripMenuItem removeMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem EditMenuItem;
+        private System.Windows.Forms.Button buttonAddRoom;
     }
 }

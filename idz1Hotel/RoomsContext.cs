@@ -8,7 +8,7 @@ using System.Data.Linq.Mapping;
 namespace idz1Hotel
 {
     [Table(Name ="Rooms")]
-    internal class Rooms
+    public class Rooms
     {
         [Column(IsPrimaryKey =true, IsDbGenerated = true, Name = "id")]
         public int Id { get; set; }

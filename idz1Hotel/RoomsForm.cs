@@ -32,7 +32,7 @@ namespace idz1Hotel
             return 0;
         }
 
-        private void LoadData()
+        public void LoadData()
         {
             using (DataContext db = new DataContext(conn))
             {
@@ -72,11 +72,49 @@ namespace idz1Hotel
             form.Show();
         }
 
-        private void roomsGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void roomsGrid_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
-            RoomBookingsForm form = new RoomBookingsForm(Convert.ToInt32(roomsGrid.Rows[e.RowIndex].Cells["Id"].Value));
+            if (e.Button == MouseButtons.Right)
+            {
+                roomsGrid.ClearSelection();
+                roomsGrid.Rows[e.RowIndex].Selected = true;
+                contextMenu.Show(Cursor.Position.X, Cursor.Position.Y);
+            }
+        }
+
+        private void removeMenuItem_Click(object sender, EventArgs e)
+        {
+            int roomId = Convert.ToInt32(roomsGrid.SelectedRows[0].Cells["Id"].Value);
+
+            using (DataContext db = new DataContext(conn))
+            {
+                Rooms roomToRemove = db.GetTable<Rooms>().Where(b => b.Id == roomId).First();
+                db.GetTable<Rooms>().DeleteOnSubmit(roomToRemove);
+                db.SubmitChanges();
+            }
+
+            LoadData();
+            Refresh();
+            contextMenu.Close();
+        }
+
+        private void buttonAddRoom_Click(object sender, EventArgs e)
+        {
+            AddRoomForm form = new AddRoomForm();
             form.Owner = this;
             form.Show();
+        }
+
+        private void EditMenuItem_Click(object sender, EventArgs e)
+        {
+            using (DataContext db = new DataContext(conn))
+            {
+                int roomId = Convert.ToInt32(roomsGrid.SelectedRows[0].Cells["Id"].Value);
+
+                AddRoomForm form = new AddRoomForm(roomId);
+                form.Owner = this;
+                form.Show();
+            }
         }
     }
 }

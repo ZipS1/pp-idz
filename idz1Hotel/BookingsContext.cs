@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace idz1Hotel
 {
     [Table(Name = "Bookings")]
-    internal class Bookings
+    public class Bookings
     {
         [Column(IsPrimaryKey = true, IsDbGenerated = true, Name = "id")]
         public int Id { get; set; }

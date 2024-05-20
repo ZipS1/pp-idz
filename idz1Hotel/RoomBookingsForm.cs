@@ -80,5 +80,31 @@ namespace idz1Hotel
             form.Owner = this;
             form.Show();
         }
+
+        private void roomBookingsGrid_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                roomBookingsGrid.ClearSelection();
+                roomBookingsGrid.Rows[e.RowIndex].Selected = true;
+                contextMenuRemove.Show(Cursor.Position.X, Cursor.Position.Y);
+            }
+        }
+
+        private void removeMenuItem_Click(object sender, EventArgs e)
+        {
+            int bookingId = Convert.ToInt32(roomBookingsGrid.SelectedRows[0].Cells["Id"].Value);
+
+            using (DataContext db = new DataContext(conn))
+            {
+                Bookings bookingToRemove = db.GetTable<Bookings>().Where(b => b.Id == bookingId).First();
+                db.GetTable<Bookings>().DeleteOnSubmit(bookingToRemove);
+                db.SubmitChanges();
+            }
+
+            LoadData();
+            Refresh();
+            contextMenuRemove.Close();
+        }
     }
 }
