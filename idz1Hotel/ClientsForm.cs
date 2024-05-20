@@ -69,7 +69,7 @@ namespace idz1Hotel
             {
                 clientsGrid.ClearSelection();
                 clientsGrid.Rows[e.RowIndex].Selected = true;
-                contextMenuRemove.Show(Cursor.Position.X, Cursor.Position.Y);
+                contextMenu.Show(Cursor.Position.X, Cursor.Position.Y);
             }
         }
 
@@ -86,7 +86,15 @@ namespace idz1Hotel
 
             LoadData();
             Refresh();
-            contextMenuRemove.Close();
+            contextMenu.Close();
+        }
+
+        private void editMenuItem_Click(object sender, EventArgs e)
+        {
+            AddClientForm form = new AddClientForm(Convert.ToInt32(clientsGrid.SelectedRows[0].Cells["Id"].Value));
+            form.Owner = this;
+            form.Show();
+            contextMenu.Close();
         }
     }
 }

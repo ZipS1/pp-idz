@@ -181,6 +181,7 @@
             this.Controls.Add(this.label1);
             this.Name = "AddClientForm";
             this.Text = "Добавление клиента";
+            this.Load += new System.EventHandler(this.AddClientForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
