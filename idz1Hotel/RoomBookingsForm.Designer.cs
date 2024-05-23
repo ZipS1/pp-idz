@@ -33,6 +33,7 @@
             this.buttonAddBooking = new System.Windows.Forms.Button();
             this.contextMenuRemove = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.removeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.roomBookingsGrid)).BeginInit();
             this.contextMenuRemove.SuspendLayout();
             this.SuspendLayout();
@@ -63,9 +64,10 @@
             // 
             this.contextMenuRemove.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuRemove.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editMenuItem,
             this.removeMenuItem});
             this.contextMenuRemove.Name = "contextMenuRemove";
-            this.contextMenuRemove.Size = new System.Drawing.Size(211, 56);
+            this.contextMenuRemove.Size = new System.Drawing.Size(211, 80);
             // 
             // removeMenuItem
             // 
@@ -73,6 +75,13 @@
             this.removeMenuItem.Size = new System.Drawing.Size(210, 24);
             this.removeMenuItem.Text = "Удалить";
             this.removeMenuItem.Click += new System.EventHandler(this.removeMenuItem_Click);
+            // 
+            // editMenuItem
+            // 
+            this.editMenuItem.Name = "editMenuItem";
+            this.editMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.editMenuItem.Text = "Изменить";
+            this.editMenuItem.Click += new System.EventHandler(this.editMenuItem_Click);
             // 
             // RoomBookingsForm
             // 
@@ -96,5 +105,6 @@
         private System.Windows.Forms.Button buttonAddBooking;
         private System.Windows.Forms.ContextMenuStrip contextMenuRemove;
         private System.Windows.Forms.ToolStripMenuItem removeMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editMenuItem;
     }
 }

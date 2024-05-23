@@ -106,5 +106,12 @@ namespace idz1Hotel
             Refresh();
             contextMenuRemove.Close();
         }
+
+        private void editMenuItem_Click(object sender, EventArgs e)
+        {
+            AddBookingForm form = new AddBookingForm(roomId, Convert.ToInt32(roomBookingsGrid.SelectedRows[0].Cells["Id"].Value));
+            form.Owner = this;
+            form.Show();
+        }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Linq;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,12 +16,14 @@ namespace idz1Hotel
     {
         static string conn = System.Configuration.ConfigurationManager.ConnectionStrings["hotelConnectionString"].ConnectionString;
         private int roomId;
+        private int bookingsId;
 
-        public AddBookingForm(int roomId)
+        public AddBookingForm(int roomId, int bookingsId = -1)
         {
             InitializeComponent();
             this.roomId = roomId;
             this.Text = $"Добавление брони в комнату #{roomId}";
+            this.bookingsId = bookingsId;
         }
 
         private void LoadData()
@@ -29,11 +32,23 @@ namespace idz1Hotel
 
             using (DataContext db = new DataContext(conn))
             {
-                ClientsBox.DataSource = db.GetTable<Clients>().Select(c => new
+                var clients = db.GetTable<Clients>().Select(c => new
                 {
+                    c.Id,
                     FullNameAndPhone = c.Lastname + ' ' + c.Name + ' ' + c.Patronymic + " (" + c.Phone + ')',
-                }).Select(c => c.FullNameAndPhone);
-        }
+                });
+
+                ClientsBox.DataSource = clients.Select(c => c.FullNameAndPhone);
+
+                if (bookingsId != -1)
+                {
+                    Bookings booking = db.GetTable<Bookings>().FirstOrDefault(b => b.Id == bookingsId);
+                    CheckInDatePicker.Value = booking.CheckInDate;
+                    CheckOutDatePicker.Value = booking.CheckOutDate;
+                    PriceUpDown.Value = booking.Price;
+                    ClientsBox.SelectedIndex = ClientsBox.FindString(clients.FirstOrDefault(c => c.Id == booking.ClientId).FullNameAndPhone);
+                }
+            }
         }
 
         private void AddBookingForm_Load(object sender, EventArgs e)
@@ -57,13 +72,40 @@ namespace idz1Hotel
 
             using (DataContext db = new DataContext(conn))
             {
-                Bookings booking = new Bookings
+                if (bookingsId == -1)
                 {
-                    RoomId = roomId,
-                    CheckInDate = CheckInDatePicker.Value,
-                    CheckOutDate = CheckOutDatePicker.Value,
-                    Price = (int)PriceUpDown.Value,
-                    ClientId = db.GetTable<Clients>().Select(c => new
+                    Bookings booking = new Bookings
+                    {
+                        RoomId = roomId,
+                        CheckInDate = CheckInDatePicker.Value,
+                        CheckOutDate = CheckOutDatePicker.Value,
+                        Price = (int)PriceUpDown.Value,
+                        ClientId = db.GetTable<Clients>().Select(c => new
+                        {
+                            c.Id,
+                            c.Lastname,
+                            c.Name,
+                            c.Patronymic,
+                            c.Phone,
+                        })
+                        .Where(c =>
+                            c.Lastname == lastname &&
+                            c.Name == name &&
+                            c.Patronymic == patronymic &&
+                            c.Phone == phone
+                        ).Select(c => c.Id).First()
+                    };
+
+                    db.GetTable<Bookings>().InsertOnSubmit(booking);
+                    db.SubmitChanges();
+                }
+                else
+                {
+                    Bookings booking = db.GetTable<Bookings>().FirstOrDefault(b => b.Id == bookingsId);
+                    booking.CheckInDate = CheckInDatePicker.Value;
+                    booking.CheckOutDate = CheckOutDatePicker.Value;
+                    booking.Price = (int)PriceUpDown.Value;
+                    booking.ClientId = db.GetTable<Clients>().Select(c => new
                     {
                         c.Id,
                         c.Lastname,
@@ -76,11 +118,10 @@ namespace idz1Hotel
                         c.Name == name &&
                         c.Patronymic == patronymic &&
                         c.Phone == phone
-                    ).Select(c => c.Id).First()
-                };
+                    ).Select(c => c.Id).First();
 
-                db.GetTable<Bookings>().InsertOnSubmit(booking);
-                db.SubmitChanges();
+                    db.SubmitChanges();
+                }
             }
 
             RoomBookingsForm form = this.Owner as RoomBookingsForm;
